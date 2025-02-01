@@ -16,4 +16,12 @@ public class MenuManager {
             System.out.println(food.getName() + ": " + food.getPrice());
         }
     }
+
+    public int findPriceByName(String name) {
+        for (Food food : foodList) {
+            if (food.getName() == name) {
+                return food.getPrice();
+            }
+        }
+    }
 }
