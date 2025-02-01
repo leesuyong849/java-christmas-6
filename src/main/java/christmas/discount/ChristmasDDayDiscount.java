@@ -4,10 +4,15 @@ import christmas.domain.Order;
 import christmas.domain.dto.DiscountResult;
 import christmas.domain.food.Food;
 
-public class ChristmasDDayDiscount implements Discount{
+public class ChristmasDDayDiscount extends AmountDiscounting {
+
+    public ChristmasDDayDiscount() {
+        super("크리스마스 디데이 할인");
+    }
+
     @Override
     public String getDiscountName() {
-        return "크리스마스 디데이 할인";
+        return super.getDiscountName();
     }
 
     @Override
@@ -19,21 +24,7 @@ public class ChristmasDDayDiscount implements Discount{
     }
 
     @Override
-    public DiscountResult discountResult(Order order) {
-        return Discount.super.discountResult(order);
-    }
-
-
-    @Override
-    public Integer Discounting(Order order) {
-        if (order.getDate() <= 25) {
-            return 1000 + (order.getDate() - 1) * 100;
-        }
-        return 0;
-    }
-
-    @Override
-    public Food gifting(Order order) {
-        return null;
+    public int applyAmountDiscount(Order order) {
+        return 1000 + (order.getDate() - 1) * 100;
     }
 }

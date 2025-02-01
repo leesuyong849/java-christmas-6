@@ -9,12 +9,17 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Map;
 
-public class WeekdayDiscount implements Discount{
+public class WeekdayDiscount extends AmountDiscounting{
 
     private final int DISCOUNT_NUM = 2023;
 
+    public WeekdayDiscount() {
+        super("평일 할인");
+    }
+
+
     @Override
-    public Integer Discounting(Order order) {
+    public int applyAmountDiscount(Order order) {
         Map<Food, Integer> menu = order.getMenu();
         int count = 0;
         for (Food s : menu.keySet()) {
@@ -23,16 +28,6 @@ public class WeekdayDiscount implements Discount{
             }
         }
         return DISCOUNT_NUM * count;
-    }
-
-    @Override
-    public Food gifting(Order order) {
-        return null;
-    }
-
-    @Override
-    public String getDiscountName() {
-        return "평일 할인";
     }
 
     @Override
@@ -46,10 +41,5 @@ public class WeekdayDiscount implements Discount{
         }
 
         return true;
-    }
-
-    @Override
-    public DiscountResult discountResult(Order order) {
-        return Discount.super.discountResult(order);
     }
 }

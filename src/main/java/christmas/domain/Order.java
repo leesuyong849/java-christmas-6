@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.discount.Discount;
 import christmas.domain.food.Food;
 
 import java.util.List;
@@ -13,9 +14,7 @@ public class Order {
 
     private Integer originalPrice;
 
-    private List<Food> giftFoodList;
-
-    private List<DiscountRecord> discountRecordList;
+    private List<Discount> discountList;
 
     private Integer finalPrice;
 
@@ -23,19 +22,7 @@ public class Order {
 
     private Integer date;
 
-    public Order(User user, Map<Food, Integer> menu, Integer originalPrice,
-                         List<Food> giftFoodList, List<DiscountRecord> discountRecordList,
-                         Integer finalPrice, Badge badge, Integer date) {
 
-        this.user = user;
-        this.menu = menu;
-        this.originalPrice = originalPrice;
-        this.giftFoodList = giftFoodList;
-        this.discountRecordList = discountRecordList;
-        this.finalPrice = finalPrice;
-        this.badge = badge;
-        this.date = date;
-    }
 
 
     public User getUser() {
@@ -50,12 +37,9 @@ public class Order {
         return originalPrice;
     }
 
-    public List<Food> getGiftFoodList() {
-        return giftFoodList;
-    }
 
-    public List<DiscountRecord> getDiscountRecordList() {
-        return discountRecordList;
+    public List<Discount> getDiscountList() {
+        return discountList;
     }
 
     public Integer getDiscountedPrice() {

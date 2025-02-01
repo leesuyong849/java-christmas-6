@@ -4,18 +4,20 @@ import christmas.domain.Order;
 import christmas.domain.dto.DiscountResult;
 import christmas.domain.food.Food;
 
-public interface Discount {
+public abstract class Discount {
 
-    Integer Discounting(Order order);
-    Food gifting(Order order);
-    String getDiscountName();
+    protected String discountName;
 
-    Boolean checking(Order order);
-
-    default DiscountResult discountResult(Order order) {
-        if (checking(order)) {
-            return new DiscountResult(Discounting(order), gifting(order));
-        }
-        return null;
+    public Discount(String discountName) {
+        this.discountName = discountName;
     }
+
+    public String getDiscountName() {
+        return this.discountName;
+    }
+
+    public abstract void applyDiscount(Order order);
+
+    public abstract Boolean checking(Order order);
+
 }
