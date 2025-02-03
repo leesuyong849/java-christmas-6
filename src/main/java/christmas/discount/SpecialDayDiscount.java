@@ -9,7 +9,7 @@ public class SpecialDayDiscount extends AmountDiscounting{
 
     public final int DISCOUNT_NUM = 1000;
 
-    public SpecialDayDiscount(String discountName) {
+    public SpecialDayDiscount() {
         super("특별 할인");
     }
 

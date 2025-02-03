@@ -1,5 +1,8 @@
 package christmas.console;
 
+import christmas.domain.food.Drink;
+import christmas.domain.food.Food;
+
 import java.io.Console;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +11,7 @@ import static christmas.service.Program.MENU;
 
 public class InputView {
 
-    public int inputDate(Console console) {
+    public static int inputDate(Console console) {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
 
         while (true) {
@@ -74,6 +77,14 @@ public class InputView {
         if (count > 20) {
             throw new IllegalArgumentException("[ERROR] 메뉴 개수는 최대 20개 입니다.");
         }
+
+        for (String food : orderMap.keySet()) {
+            if (MENU.findByName(food).getClass() != Drink.class) {
+                throw new IllegalArgumentException("[ERROR] 음료 메뉴만 주문할 수 없습니다.");
+            }
+        }
+
+
         return orderMap;
     }
 }
